@@ -59,10 +59,43 @@ namespace ReferralManagement.Models
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
-        [Required]
+        
+        
         [Display(Name = "User Name")]
         public string UserName
+        {
+            get;
+            set;
+        }
+
+        
+        [Display(Name = "First Name")]
+        public string FirstName
+        {
+            get;
+            set;
+        }
+
+        
+        [Display(Name = "Last Name")]
+        public string LastName
+        {
+            get;
+            set;
+        }
+
+
+
+        
+        [Display(Name = "Phone Number")]
+        public string PhoneNum
+        {
+            get;
+            set;
+        }
+        [Display(Name = "ReferCode")]
+        public string ReferCode
+            //fill advocate's refercode when new user register
         {
             get;
             set;

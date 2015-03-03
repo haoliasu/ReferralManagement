@@ -90,7 +90,21 @@ namespace ReferralManagement.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+                using(ReferralManagementEntities userInfoToAdd=new ReferralManagementEntities())
+                {
+
+                    var newuser = new UserInfo();
+                    newuser.Email = model.Email;
+                    newuser.Password = model.Password;
+
+                    userInfoToAdd.UserInfoes.Add(newuser);
+
+                    userInfoToAdd.SaveChanges();
+
+                var user = new ApplicationUser() { 
+                    UserName = model.Email, 
+                    Email = model.Email
+                };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -108,6 +122,7 @@ namespace ReferralManagement.Controllers
                 {
                     AddErrors(result);
                 }
+                }              
             }
 
             // If we got this far, something failed, redisplay form
